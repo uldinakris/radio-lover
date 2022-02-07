@@ -8,7 +8,6 @@ class RadioTest {
     @Test
     public void shouldIncreaseVolume() {
         Radio radio = new Radio();
-
         radio.increaseVolume();
 
         int expected = 1;
@@ -20,10 +19,10 @@ class RadioTest {
     @Test
     public void shouldNotIncreaseVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
@@ -99,6 +98,18 @@ class RadioTest {
     }
 
     @Test
+    public void shouldNextChannelMaxChannelAmount() {
+        Radio radio = new Radio(20);
+        radio.setCurrentChannel(19);
+        radio.nextChannel();
+
+        int expected = 0;
+        int actual = radio.getCurrentChannel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldNextChannelAfterNine() {
         Radio radio = new Radio();
         radio.setCurrentChannel(9);
@@ -129,6 +140,18 @@ class RadioTest {
         radio.prevChannel();
 
         int expected = 9;
+        int actual = radio.getCurrentChannel();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldPrevChannelAfterZeroWithSetChannelAmount() {
+        Radio radio = new Radio(15);
+        radio.setCurrentChannel(0);
+        radio.prevChannel();
+
+        int expected = 14;
         int actual = radio.getCurrentChannel();
 
         assertEquals(expected, actual);
