@@ -64,6 +64,6 @@ public class Radio {
     }
 
     public Radio() {
-        this.channelAmount = 10;
+        this.channelAmount = 9;
     }
 }
